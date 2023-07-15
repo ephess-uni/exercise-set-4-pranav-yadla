@@ -8,12 +8,18 @@ except ImportError:
 FILENAME = get_data_file_path('messages.log')
 # >>>> DO NOT MODIFY CODE ABOVE <<<<
 
+def check(str):
+    return str.__contains__('Shutdown initiated')
+
 
 def get_shutdown_events(logfile):
     """
     Your docstring here.  Replace the pass keyword below with your implementation
     """
-    pass
+    with open(logfile,'r') as f:
+        li=f.read().splitlines()
+        filter_li = filter(check,li)
+    return list(filter_li)
 
 
 # >>>> The code below will call your function and print the results
